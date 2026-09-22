@@ -115,6 +115,22 @@
       color: rgba(173,216,230,0.7);
     }
 
+    .registration-closed {
+      display: inline-block;
+      margin: 0 auto 24px;
+      padding: 12px 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: linear-gradient(90deg, #4a4a4a, #8a8a8a);
+      border-radius: 50px;
+      box-shadow: 0 0 18px rgba(120, 120, 120, 0.35);
+      pointer-events: none;
+      user-select: none;
+    }
+
 
     /* SOCIAL ICONS */
     .social-icons {
@@ -269,53 +285,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-
-    /* GLOWING BUTTON */
-    .glow-button {
-      display: inline-block;
-      padding: 15px 35px;
-      font-size: 1.2rem;
-      font-family: 'Cinzel', serif;
-      font-weight: 500;
-      color: #fff;
-      text-decoration: none;
-      background: linear-gradient(90deg, #3d143d, #ba79d6);
-      border: none;
-      border-radius: 50px;
-      box-shadow: 0 0 20px rgba(186, 121, 214, 0.5);
-      transition: all 0.3s ease;
-      margin-top: 5px;
-      margin-bottom: 20px;
-      animation: glowPulse 2s ease-in-out infinite alternate;
-    }
-
-
-    .glow-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(186, 121, 214, 0.8), 0 0 40px rgba(157, 220, 255, 0.6);
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    }
-
-    .waitlist-note {
-      max-width: 520px;
-      margin: -8px auto 24px;
-      padding: 0 16px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      line-height: 1.55;
-      color: rgba(245, 245, 245, 0.78);
-      text-align: center;
-    }
-
-
-    @keyframes glowPulse {
-      from {
-        box-shadow: 0 0 20px rgba(186, 121, 214, 0.5);
-      }
-      to {
-        box-shadow: 0 0 30px rgba(186, 121, 214, 0.7), 0 0 40px rgba(157, 220, 255, 0.4);
-      }
-    }
 
     .navbar {
       position: fixed;
@@ -793,6 +762,282 @@
       line-height: 1.6;
     }
 
+    /* INTERACTIVE SCHEDULE STYLES (temporarily disabled)
+    .schedule-board {
+      --schedule-bg: rgba(18, 11, 36, 0.72);
+      --schedule-border: rgba(88, 28, 135, 0.4);
+      --schedule-gold: #fbbf24;
+      --schedule-gold-soft: rgba(251, 191, 36, 0.35);
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 18px 16px 16px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        var(--schedule-bg);
+      border: 1px solid var(--schedule-border);
+      box-shadow:
+        0 0 0 1px rgba(250, 230, 255, 0.06),
+        0 0 28px rgba(186, 121, 214, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .schedule-day-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .schedule-day-toggle-inner {
+      display: inline-flex;
+      padding: 4px;
+      gap: 4px;
+      border-radius: 999px;
+      background: rgba(8, 4, 18, 0.55);
+      border: 1px solid rgba(186, 121, 214, 0.28);
+    }
+
+    .schedule-day-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.4px;
+      color: rgba(245, 245, 245, 0.7);
+      background: transparent;
+      border-radius: 999px;
+      padding: 9px 16px;
+      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .schedule-day-btn.is-active {
+      color: #fff8e7;
+      background: linear-gradient(120deg, rgba(61, 20, 61, 0.95), rgba(186, 121, 214, 0.55));
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.22), inset 0 0 0 1px rgba(251, 191, 36, 0.35);
+    }
+
+    .schedule-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .schedule-filter-btn {
+      appearance: none;
+      border: 1px solid rgba(186, 121, 214, 0.28);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(245, 245, 245, 0.78);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 5px 11px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .schedule-filter-btn:hover {
+      border-color: rgba(251, 191, 36, 0.45);
+      color: #fff;
+    }
+
+    .schedule-filter-btn.is-active {
+      color: #fff8e7;
+      border-color: var(--schedule-gold);
+      background: rgba(251, 191, 36, 0.12);
+      box-shadow: 0 0 14px var(--schedule-gold-soft);
+    }
+
+    .schedule-list {
+      max-height: min(520px, 62vh);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(186, 121, 214, 0.55) transparent;
+    }
+
+    .schedule-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .schedule-list::-webkit-scrollbar-thumb {
+      background: rgba(186, 121, 214, 0.45);
+      border-radius: 999px;
+    }
+
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 8px 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(88, 28, 135, 0.35);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .schedule-item:hover {
+      border-color: rgba(186, 121, 214, 0.45);
+      background: rgba(186, 121, 214, 0.06);
+    }
+
+    .schedule-item.is-deadline {
+      border-color: rgba(251, 191, 36, 0.55);
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.18);
+      background: rgba(251, 191, 36, 0.06);
+    }
+
+    .schedule-item-time {
+      font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+      font-size: 0.68rem;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      color: rgba(251, 191, 36, 0.92);
+      padding-top: 2px;
+    }
+
+    .schedule-item-body {
+      min-width: 0;
+    }
+
+    .schedule-item-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.86rem;
+      line-height: 1.3;
+      color: #f5f5f5;
+      margin: 0 0 4px;
+    }
+
+    .schedule-item-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .schedule-item-location {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      color: rgba(245, 245, 245, 0.62);
+    }
+
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .schedule-badge--deadline {
+      color: #fde68a;
+      border-color: rgba(251, 191, 36, 0.65);
+      background: rgba(251, 191, 36, 0.12);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+    }
+
+    .schedule-badge--food {
+      color: #bbf7d0;
+      border-color: rgba(74, 222, 128, 0.45);
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .schedule-badge--workshop {
+      color: #ddd6fe;
+      border-color: rgba(167, 139, 250, 0.5);
+      background: rgba(139, 92, 246, 0.12);
+    }
+
+    .schedule-badge--career {
+      color: #bfdbfe;
+      border-color: rgba(96, 165, 250, 0.5);
+      background: rgba(59, 130, 246, 0.12);
+    }
+
+    .schedule-badge--mentorship,
+    .schedule-badge--social {
+      color: #e9d5ff;
+      border-color: rgba(216, 180, 254, 0.5);
+      background: rgba(192, 132, 252, 0.12);
+    }
+
+    .schedule-badge--core {
+      color: #c4b5fd;
+      border-color: rgba(186, 121, 214, 0.55);
+      background: rgba(186, 121, 214, 0.12);
+    }
+
+    .schedule-badge--logistics {
+      color: #e5e7eb;
+      border-color: rgba(156, 163, 175, 0.45);
+      background: rgba(156, 163, 175, 0.1);
+    }
+
+    .schedule-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 28px 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(245, 245, 245, 0.65);
+    }
+
+    @media (max-width: 820px) {
+      .schedule-list {
+        max-height: min(480px, 58vh);
+      }
+
+      .schedule-item {
+        grid-template-columns: 96px 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .schedule-board {
+        padding: 14px 10px 12px;
+      }
+
+      .schedule-day-btn {
+        font-size: 0.74rem;
+        padding: 8px 12px;
+      }
+
+      .schedule-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 10px;
+      }
+
+      .schedule-item-time {
+        font-size: 0.7rem;
+      }
+
+      .schedule-item-title {
+        font-size: 0.84rem;
+      }
+    }
+
+
+    */
 
     /* SPONSORS SECTION — Magical Vine */
     #sponsors {
@@ -958,6 +1203,11 @@
       height: var(--logo-height);
     }
 
+    .terrarium-shelf--ironwood .sponsor-cloche--fiserv .sponsor-cloche-logo {
+      width: 200px;
+      height: 72px;
+    }
+
     .terrarium-shelf--ironwood .sponsor-cloche-logo img {
       width: 100%;
       height: 100%;
@@ -971,15 +1221,60 @@
       --shelf-label: #eef4fa;
       --plaque-border: rgba(186, 121, 214, 0.5);
       --plaque-glow: rgba(200, 214, 230, 0.3);
-      --logo-size: 250px;
-      --logo-height: 100px;
-      padding: 20px 56px 0;
+      --logo-size: 300px;
+      --logo-height: 120px;
+      padding: 28px 48px 0;
+      min-height: 240px;
+      overflow: hidden;
     }
 
     .terrarium-shelf--birch .terrarium-shelf-items {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
       align-items: center;
-      gap: 48px 72px;
-      padding-bottom: 18px;
+      gap: 0;
+      width: min(1040px, 100%);
+      margin-inline: auto;
+      padding: 0 0 28px;
+      box-sizing: border-box;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche-logo {
+      width: 100%;
+      max-width: 300px;
+      height: 120px;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--merck .sponsor-cloche-logo {
+      animation: none;
+      filter: none;
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--aws .sponsor-cloche-logo {
+      animation: none;
+      filter: none;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--digitalverity .sponsor-cloche-logo {
+      width: 100%;
+      max-width: 290px;
+      height: 118px;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--isc2 {
+      flex: 0 1 155px;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
+      width: 145px;
+      max-width: 145px;
+      height: 135px;
     }
 
     .terrarium-shelf--inkind {
@@ -988,7 +1283,13 @@
       --shelf-label: #f0e0f8;
       --plaque-border: rgba(186, 121, 214, 0.45);
       --plaque-glow: rgba(186, 121, 214, 0.28);
-      --logo-size: 115px;
+      --logo-size: 85px;
+    }
+
+    .terrarium-shelf--inkind .terrarium-shelf-items {
+      gap: 36px 88px;
+      justify-content: center;
+      padding-bottom: 14px;
     }
 
     /* Ornate wood-carved / whimsical plaque for tier titles */
@@ -1122,8 +1423,12 @@
     .terrarium-shelf--ironwood .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2s; }
     .terrarium-shelf--birch .sponsor-cloche-logo { animation-duration: 3.8s; animation-delay: -0.4s; }
     .terrarium-shelf--birch .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -1.8s; }
+    .terrarium-shelf--birch .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -2.6s; }
+    .terrarium-shelf--birch .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.2s; }
     .terrarium-shelf--inkind .sponsor-cloche-logo { animation-duration: 4s; animation-delay: -1s; }
     .terrarium-shelf--inkind .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.2s; }
+    .terrarium-shelf--inkind .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -3s; }
+    .terrarium-shelf--inkind .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.8s; }
 
     .sponsor-cloche:hover .sponsor-cloche-logo,
     .sponsor-cloche:focus-within .sponsor-cloche-logo {
@@ -1206,24 +1511,55 @@
         padding: 22px 32px 0;
       }
 
+      .terrarium-shelf--ironwood .sponsor-cloche--fiserv .sponsor-cloche-logo {
+        width: 150px;
+        height: 54px;
+      }
+
       .terrarium-shelf--ironwood .terrarium-shelf-items {
         gap: 32px 48px;
         padding-bottom: 18px;
       }
 
       .terrarium-shelf--birch {
-        --logo-size: 185px;
-        --logo-height: 74px;
-        padding: 16px 24px 0;
+        --logo-size: 235px;
+        --logo-height: 94px;
+        padding: 20px 24px 0;
+        min-height: 190px;
       }
 
       .terrarium-shelf--birch .terrarium-shelf-items {
-        gap: 32px 44px;
-        padding-bottom: 14px;
+        width: min(760px, 100%);
+        gap: 0;
+        padding: 0 0 22px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche-logo {
+        max-width: 215px;
+        height: 86px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--digitalverity .sponsor-cloche-logo {
+        max-width: 205px;
+        height: 84px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--isc2 {
+        flex: 0 1 118px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
+        width: 115px;
+        max-width: 115px;
+        height: 115px;
       }
 
       .terrarium-shelf--inkind {
-        --logo-size: 90px;
+        --logo-size: 68px;
+      }
+
+      .terrarium-shelf--inkind .terrarium-shelf-items {
+        gap: 28px 48px;
       }
 
       .terrarium-shelf-items {
@@ -1800,9 +2136,9 @@
         font-size: 1.15rem;
       }
 
-      .glow-button {
-        padding: 14px 28px;
-        font-size: 1rem;
+      .registration-closed {
+        padding: 10px 22px;
+        font-size: 0.9rem;
       }
 
       .about-content {
@@ -1826,14 +2162,6 @@
       .team-intro {
         font-size: 1.05rem;
         margin-top: -12px;
-      }
-
-      .schedule-placeholder {
-        padding: 40px 20px;
-      }
-
-      .schedule-placeholder p {
-        font-size: 1.1rem;
       }
 
       .sponsor-message {
@@ -1886,7 +2214,6 @@
       .nav-toggle,
       .team-orb,
       .faq-question,
-      .glow-button,
       a {
         cursor: auto;
       }
@@ -1975,10 +2302,8 @@
         </div>
       </div>
       <p class="subtitle">OCTOBER 3RD–4TH 2026</p>
+      <div class="registration-closed" role="status">Registration Closed</div>
 
-
-      <a href="https://forms.gle/HXwtkDDoNaG6ETRp6" class="glow-button" target="_blank" rel="noopener noreferrer">Join the Waitlist!</a>
-      <p class="waitlist-note">Registration is now closed but we encourage you to join the waitlist in case a spot opens up closer to the event!</p>
 
       </div>
 
@@ -2057,6 +2382,19 @@
         <span class="schedule-placeholder-icon" aria-hidden="true">✦</span>
         <p>Full schedule coming soon.</p>
       </div>
+      <!--
+      INTERACTIVE SCHEDULE BOARD (temporarily disabled — restore when ready)
+      <div class="schedule-board" id="schedule-board">
+        <div class="schedule-day-toggle" role="tablist" aria-label="Schedule day">
+          <div class="schedule-day-toggle-inner">
+            <button type="button" class="schedule-day-btn is-active" data-day="1" role="tab" aria-selected="true">Day 1 · Sat, Oct 3</button>
+            <button type="button" class="schedule-day-btn" data-day="2" role="tab" aria-selected="false">Day 2 · Sun, Oct 4</button>
+          </div>
+        </div>
+        <div class="schedule-filters" id="schedule-filters" role="group" aria-label="Filter schedule by category"></div>
+        <div class="schedule-list" id="schedule-list" role="list"></div>
+      </div>
+      -->
     </div>
   </section>
 
@@ -2108,7 +2446,7 @@
             <span class="terrarium-shelf-label-name">Ironwood</span>
           </div>
           <div class="terrarium-shelf-items">
-            <a class="sponsor-cloche is-dark-logo" href="https://www.fiserv.com/en.html" target="_blank" rel="noopener noreferrer" aria-label="Fiserv, Ironwood sponsor">
+            <a class="sponsor-cloche is-dark-logo sponsor-cloche--fiserv" href="https://www.fiserv.com/en.html" target="_blank" rel="noopener noreferrer" aria-label="Fiserv, Ironwood sponsor">
               <div class="sponsor-cloche-logo">
                 <img src="assets/Fiserv.png" alt="Fiserv" />
               </div>
@@ -2129,7 +2467,7 @@
             <span class="terrarium-shelf-label-name">Silver Birch</span>
           </div>
           <div class="terrarium-shelf-items">
-            <a class="sponsor-cloche" href="https://www.merck.com/" target="_blank" rel="noopener noreferrer" aria-label="Merck, Silver Birch sponsor">
+            <a class="sponsor-cloche sponsor-cloche--merck" href="https://www.merck.com/" target="_blank" rel="noopener noreferrer" aria-label="Merck, Silver Birch sponsor">
               <div class="sponsor-cloche-logo">
                 <img src="assets/02852_Merck_Logo_Horizontal_Teal%26Grey_RGB.png" alt="Merck" />
               </div>
@@ -2138,6 +2476,18 @@
             <a class="sponsor-cloche" href="https://www.crowdstrike.com/en-us/" target="_blank" rel="noopener noreferrer" aria-label="Crowdstrike, Silver Birch sponsor">
               <div class="sponsor-cloche-logo">
                 <img src="assets/crowdstrike-logo.png" alt="Crowdstrike" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche sponsor-cloche--digitalverity" href="https://www.digitalverity.ai/" target="_blank" rel="noopener noreferrer" aria-label="DigitalVerity, Silver Birch sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/digital_verify.webp" alt="DigitalVerity" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche sponsor-cloche--isc2" href="https://www.isc2.org/" target="_blank" rel="noopener noreferrer" aria-label="ISC2 New Jersey Chapter, Silver Birch sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/ISC2_White.png" alt="ISC2 New Jersey Chapter" />
               </div>
             </a>
           </div>
@@ -2150,6 +2500,18 @@
             <span class="terrarium-shelf-label-name">In Kind</span>
           </div>
           <div class="terrarium-shelf-items">
+            <a class="sponsor-cloche sponsor-cloche--aws" href="https://aws.amazon.com/?nc2=h_home" target="_blank" rel="noopener noreferrer" aria-label="AWS, In Kind sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/png-transparent-amazon-aws-logo.png" alt="AWS" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche" href="https://deep.space/" target="_blank" rel="noopener noreferrer" aria-label="Deepspace, In Kind sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/deepspace-mark.png" alt="Deepspace" />
+              </div>
+            </a>
+
             <a class="sponsor-cloche" href="https://immieats.com/" target="_blank" rel="noopener noreferrer" aria-label="IMMI, In Kind sponsor">
               <div class="sponsor-cloche-logo">
                 <img src="assets/IMMI_LOGO_YELLOW_RGB_1600px.png" alt="IMMI" />
@@ -3139,6 +3501,173 @@
       }
     }
 
+    /* INTERACTIVE SCHEDULE JS (temporarily disabled)
+    function initSchedule() {
+      const listEl = document.getElementById('schedule-list');
+      const filtersEl = document.getElementById('schedule-filters');
+      const dayButtons = document.querySelectorAll('.schedule-day-btn');
+      if (!listEl || !filtersEl || !dayButtons.length) return;
+
+      const scheduleData = [
+        { time: "08:30 AM - 10:00 AM", title: "Sponsor & Club Doors Open", location: "Ballroom A", category: "Logistics", day: 1 },
+        { time: "09:30 AM - 10:30 AM", title: "Hacker Check-In & Breakfast", location: "Ballroom A", category: "Food", day: 1 },
+        { time: "09:30 AM - 10:30 AM", title: "Company Career Expo", location: "Ballroom B", category: "Career", day: 1 },
+        { time: "10:30 AM - 11:40 AM", title: "Opening Ceremony & Keynote Speeches", location: "Ballroom A", category: "Core", day: 1 },
+        { time: "11:40 AM", title: "Official Hacking Start Announcement", location: "Ballroom A", category: "Deadline", day: 1 },
+        { time: "11:45 AM - 12:15 PM", title: "Team Formation Workshop", location: "Ballroom A", category: "Workshop", day: 1 },
+        { time: "12:00 PM - 12:50 PM", title: "ADP Sponsor Workshop", location: "CC Rooms", category: "Workshop", day: 1 },
+        { time: "01:00 PM - 02:00 PM", title: "Hacker Lunch", location: "Ballroom B", category: "Food", day: 1 },
+        { time: "02:00 PM - 02:50 PM", title: "Avanade Sponsor Workshop", location: "CC Rooms", category: "Workshop", day: 1 },
+        { time: "03:00 PM - 04:00 PM", title: "Fireside Chat & Networking", location: "Atrium", category: "Social", day: 1 },
+        { time: "04:00 PM - 04:30 PM", title: "Concurrent Workshops: MLH & GitHub", location: "CC Rooms", category: "Workshop", day: 1 },
+        { time: "04:30 PM - 05:00 PM", title: "MLH Workshop 2", location: "CC Rooms", category: "Workshop", day: 1 },
+        { time: "05:00 PM - 05:40 PM", title: "GirlHacks Team Tech Workshop", location: "CC Rooms", category: "Workshop", day: 1 },
+        { time: "06:30 PM - 07:30 PM", title: "Dinner", location: "Ballroom A", category: "Food", day: 1 },
+        { time: "07:00 PM - 07:30 PM", title: "Paper Airplane Challenge", location: "Hallway", category: "Social", day: 1 },
+        { time: "09:00 PM", title: "Team Formation / Registration Form Due", location: "Online", category: "Deadline", day: 1 },
+        { time: "09:30 PM - 10:30 PM", title: "Spicy Noodle Challenge (Buldak)", location: "CC Rooms", category: "Social", day: 1 },
+        { time: "11:00 PM - 12:00 AM", title: "Midnight Snack & Tarot / Palm Reading Station", location: "Ballroom B", category: "Food", day: 1 },
+        { time: "12:00 AM - 01:00 AM", title: "Midnight Karaoke", location: "CC Rooms", category: "Social", day: 2 },
+        { time: "12:00 AM - 01:00 AM", title: "Late Night Yoga & Just Dance", location: "CC Rooms", category: "Social", day: 2 },
+        { time: "08:00 AM - 09:00 AM", title: "Breakfast", location: "Ballroom B", category: "Food", day: 2 },
+        { time: "10:00 AM - 10:30 AM", title: "Devpost Submission Q&A Table", location: "Ballroom A", category: "Logistics", day: 2 },
+        { time: "10:45 AM", title: "Soft Submission Deadline", location: "Ballroom A", category: "Deadline", day: 2 },
+        { time: "11:00 AM", title: "HARD SUBMISSION DEADLINE", location: "Ballroom A", category: "Deadline", day: 2 },
+        { time: "11:20 AM - 11:45 AM", title: "De-Stress Activities & Lunch", location: "CC Rooms / Ballroom B", category: "Social", day: 2 },
+        { time: "12:30 PM - 02:00 PM", title: "General Project Expo & Judging", location: "Ballroom A", category: "Core", day: 2 },
+        { time: "02:00 PM - 03:00 PM", title: "De-Stress Lounge (While scores tally)", location: "CC Rooms", category: "Social", day: 2 },
+        { time: "03:15 PM - 03:45 PM", title: "Closing Ceremony & Winner Announcements", location: "Ballroom A", category: "Core", day: 2 },
+        { time: "03:45 PM - 04:00 PM", title: "Top 3 Project Demos & Sponsor Thanks", location: "Ballroom A", category: "Core", day: 2 },
+        { time: "04:00 PM", title: "GirlHacks 2026 Ends", location: "Main Stage", category: "Core", day: 2 }
+      ];
+
+      const filterOptions = ['All', 'Core', 'Workshop', 'Food', 'Social', 'Career', 'Deadline'];
+      const badgeIcons = {
+        Deadline: '🚨',
+        Food: '🍔',
+        Workshop: '🛠️',
+        Career: '💼',
+        Social: '✨',
+        Core: '✦',
+        Logistics: '📌'
+      };
+
+      let activeDay = 1;
+      let activeFilter = 'All';
+
+      filterOptions.forEach((label) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'schedule-filter-btn' + (label === 'All' ? ' is-active' : '');
+        btn.dataset.filter = label;
+        btn.textContent = label;
+        btn.setAttribute('aria-pressed', label === 'All' ? 'true' : 'false');
+        filtersEl.appendChild(btn);
+      });
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function render() {
+        const items = scheduleData.filter((event) => {
+          if (event.day !== activeDay) return false;
+          if (activeFilter === 'All') return true;
+          return event.category === activeFilter;
+        });
+
+        if (!items.length) {
+          listEl.innerHTML = '<p class="schedule-empty">No events in this category for this day.</p>';
+          return;
+        }
+
+        listEl.innerHTML = items.map((event) => {
+          const catClass = event.category.toLowerCase();
+          const icon = badgeIcons[event.category] || '✦';
+          const deadlineClass = event.category === 'Deadline' ? ' is-deadline' : '';
+          return `
+            <article class="schedule-item${deadlineClass}" role="listitem">
+              <div class="schedule-item-time">${escapeHtml(event.time)}</div>
+              <div class="schedule-item-body">
+                <h3 class="schedule-item-title">${escapeHtml(event.title)}</h3>
+                <div class="schedule-item-meta">
+                  <span class="schedule-badge schedule-badge--${catClass}">${icon} ${escapeHtml(event.category)}</span>
+                  <span class="schedule-item-location">${escapeHtml(event.location)}</span>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      dayButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeDay = Number(btn.dataset.day);
+          dayButtons.forEach((other) => {
+            const isActive = other === btn;
+            other.classList.toggle('is-active', isActive);
+            other.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          render();
+        });
+      });
+
+      filtersEl.addEventListener('click', (event) => {
+        const btn = event.target.closest('.schedule-filter-btn');
+        if (!btn) return;
+        activeFilter = btn.dataset.filter;
+        filtersEl.querySelectorAll('.schedule-filter-btn').forEach((other) => {
+          const isActive = other === btn;
+          other.classList.toggle('is-active', isActive);
+          other.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        render();
+      });
+
+      // Keep page smooth-scroll off while interacting with the schedule list
+      function lockPageScroll() {
+        window.lenis?.stop();
+      }
+
+      function unlockPageScroll() {
+        window.lenis?.start();
+      }
+
+      listEl.addEventListener('pointerenter', lockPageScroll);
+      listEl.addEventListener('pointerleave', unlockPageScroll);
+      listEl.addEventListener('focusin', lockPageScroll);
+      listEl.addEventListener('focusout', (event) => {
+        if (!listEl.contains(event.relatedTarget)) unlockPageScroll();
+      });
+
+      listEl.addEventListener('wheel', (event) => {
+        const { scrollTop, scrollHeight, clientHeight } = listEl;
+        const atTop = scrollTop <= 0;
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+        const scrollingUp = event.deltaY < 0;
+        const scrollingDown = event.deltaY > 0;
+
+        // Always keep Lenis from moving the page while over the box
+        event.stopPropagation();
+
+        if ((scrollingUp && atTop) || (scrollingDown && atBottom)) {
+          // At edge of schedule box — don't bounce the page
+          event.preventDefault();
+          return;
+        }
+
+        // Native overflow scroll handles the rest once Lenis is stopped
+      }, { passive: false });
+
+      render();
+    }
+
+    */
+
     window.addEventListener('load', () => {
       initMlhBadge();
       initFlowerReveal();
@@ -3146,6 +3675,7 @@
       initTeamGrid();
       initButterfly();
       initTracksCarousel();
+      // initSchedule(); // temporarily disabled — schedule placeholder active
       ScrollTrigger.refresh();
     });
   </script>
