@@ -1230,10 +1230,10 @@
 
     .terrarium-shelf--birch .terrarium-shelf-items {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 0;
+      gap: 10px 12px;
       width: min(1040px, 100%);
       margin-inline: auto;
       padding: 0 0 28px;
@@ -1241,14 +1241,15 @@
     }
 
     .terrarium-shelf--birch .sponsor-cloche {
-      flex: 1 1 0;
+      flex: 1 1 160px;
       min-width: 0;
+      max-width: 300px;
     }
 
     .terrarium-shelf--birch .sponsor-cloche-logo {
       width: 100%;
-      max-width: 300px;
-      height: 120px;
+      max-width: 280px;
+      height: 112px;
     }
 
     .terrarium-shelf--birch .sponsor-cloche--merck .sponsor-cloche-logo {
@@ -1263,18 +1264,50 @@
 
     .terrarium-shelf--birch .sponsor-cloche--digitalverity .sponsor-cloche-logo {
       width: 100%;
-      max-width: 290px;
-      height: 118px;
+      max-width: 270px;
+      height: 110px;
     }
 
     .terrarium-shelf--birch .sponsor-cloche--isc2 {
-      flex: 0 1 155px;
+      flex: 0 1 145px;
+      max-width: 145px;
     }
 
     .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
-      width: 145px;
-      max-width: 145px;
-      height: 135px;
+      width: 135px;
+      max-width: 135px;
+      height: 125px;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--wipro .sponsor-cloche-logo {
+      max-width: 160px;
+      height: 140px;
+      animation: none;
+      filter: none;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo {
+      max-width: 260px;
+      height: 100px;
+    }
+
+    .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo img {
+      filter: invert(1) hue-rotate(180deg) brightness(1.08) contrast(1.05);
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo img {
+      filter: invert(1) hue-rotate(180deg) brightness(1.05);
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--photon .sponsor-cloche-logo,
+    .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+      width: 200px;
+      height: 68px;
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+      width: 230px;
+      height: 78px;
     }
 
     .terrarium-shelf--inkind {
@@ -1289,6 +1322,8 @@
     .terrarium-shelf--inkind .terrarium-shelf-items {
       gap: 36px 88px;
       justify-content: center;
+      align-items: center;
+      padding-top: 18px;
       padding-bottom: 14px;
     }
 
@@ -1425,10 +1460,14 @@
     .terrarium-shelf--birch .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -1.8s; }
     .terrarium-shelf--birch .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -2.6s; }
     .terrarium-shelf--birch .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.2s; }
+    .terrarium-shelf--birch .sponsor-cloche:nth-child(5) .sponsor-cloche-logo { animation-delay: -1.2s; }
+    .terrarium-shelf--birch .sponsor-cloche:nth-child(6) .sponsor-cloche-logo { animation-delay: -2.0s; }
     .terrarium-shelf--inkind .sponsor-cloche-logo { animation-duration: 4s; animation-delay: -1s; }
     .terrarium-shelf--inkind .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.2s; }
     .terrarium-shelf--inkind .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -3s; }
     .terrarium-shelf--inkind .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.8s; }
+    .terrarium-shelf--inkind .sponsor-cloche:nth-child(5) .sponsor-cloche-logo { animation-delay: -1.5s; }
+    .terrarium-shelf--inkind .sponsor-cloche:nth-child(6) .sponsor-cloche-logo { animation-delay: -2.8s; }
 
     .sponsor-cloche:hover .sponsor-cloche-logo,
     .sponsor-cloche:focus-within .sponsor-cloche-logo {
@@ -1530,7 +1569,7 @@
 
       .terrarium-shelf--birch .terrarium-shelf-items {
         width: min(760px, 100%);
-        gap: 0;
+        gap: 8px 10px;
         padding: 0 0 22px;
       }
 
@@ -1546,6 +1585,7 @@
 
       .terrarium-shelf--birch .sponsor-cloche--isc2 {
         flex: 0 1 118px;
+        max-width: 118px;
       }
 
       .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
@@ -1554,12 +1594,34 @@
         height: 115px;
       }
 
+      .terrarium-shelf--birch .sponsor-cloche--wipro .sponsor-cloche-logo {
+        max-width: 120px;
+        height: 110px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo {
+        max-width: 200px;
+        height: 80px;
+      }
+
       .terrarium-shelf--inkind {
         --logo-size: 68px;
       }
 
       .terrarium-shelf--inkind .terrarium-shelf-items {
         gap: 28px 48px;
+        padding-top: 14px;
+      }
+
+      .terrarium-shelf--inkind .sponsor-cloche--photon .sponsor-cloche-logo,
+      .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+        width: 150px;
+        height: 52px;
+      }
+
+      .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+        width: 175px;
+        height: 60px;
       }
 
       .terrarium-shelf-items {
@@ -2490,6 +2552,18 @@
                 <img src="assets/ISC2_White.png" alt="ISC2 New Jersey Chapter" />
               </div>
             </a>
+
+            <a class="sponsor-cloche sponsor-cloche--wipro" href="https://www.wipro.com/" target="_blank" rel="noopener noreferrer" aria-label="Wipro, Silver Birch sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/Wipro_Primary%20Logo_Color_RGB.png" alt="Wipro" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche sponsor-cloche--isaca" href="https://www.isaca.org/" target="_blank" rel="noopener noreferrer" aria-label="ISACA, Silver Birch sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/ISACA_logo.png" alt="ISACA" />
+              </div>
+            </a>
           </div>
           <div class="terrarium-shelf-rail" aria-hidden="true"></div>
         </div>
@@ -2521,6 +2595,18 @@
             <a class="sponsor-cloche" href="https://www.wegmans.com/" target="_blank" rel="noopener noreferrer" aria-label="Wegmans, In Kind sponsor">
               <div class="sponsor-cloche-logo">
                 <img src="assets/wegmans_logo.webp" alt="Wegmans" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche sponsor-cloche--photon" href="https://photon.codes/" target="_blank" rel="noopener noreferrer" aria-label="Photon, In Kind sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/Photon%20-%20Logotype%20-%20512w.png" alt="Photon" />
+              </div>
+            </a>
+
+            <a class="sponsor-cloche sponsor-cloche--lovable" href="https://lovable.dev/" target="_blank" rel="noopener noreferrer" aria-label="Lovable, In Kind sponsor">
+              <div class="sponsor-cloche-logo">
+                <img src="assets/Lovable_Logo_%2B_Wordmark_Black.png" alt="Lovable" />
               </div>
             </a>
           </div>
