@@ -1318,7 +1318,8 @@
     }
 
     .terrarium-shelf--inkind .sponsor-cloche--photon .sponsor-cloche-logo,
-    .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+    .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo,
+    .terrarium-shelf--inkind .sponsor-cloche--elevenlabs .sponsor-cloche-logo {
       width: 200px;
       height: 68px;
     }
@@ -1338,11 +1339,45 @@
     }
 
     .terrarium-shelf--inkind .terrarium-shelf-items {
-      gap: 36px 88px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 18px 48px 14px;
+      box-sizing: border-box;
+    }
+
+    .terrarium-shelf--inkind .inkind-row {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      gap: 24px 40px;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .terrarium-shelf--inkind .inkind-row--four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .terrarium-shelf--inkind .inkind-row--three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 980px;
+    }
+
+    .terrarium-shelf--inkind .inkind-row .sponsor-cloche {
+      width: 100%;
+      display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 18px;
-      padding-bottom: 14px;
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--deepspace .sponsor-cloche-logo {
+      margin-left: 14px;
+    }
+
+    .terrarium-shelf--inkind .sponsor-cloche--immi .sponsor-cloche-logo {
+      margin-left: 28px;
     }
 
     /* Ornate wood-carved / whimsical plaque for tier titles */
@@ -1481,11 +1516,12 @@
     .terrarium-shelf--birch .sponsor-cloche:nth-child(5) .sponsor-cloche-logo { animation-delay: -1.2s; }
     .terrarium-shelf--birch .sponsor-cloche:nth-child(6) .sponsor-cloche-logo { animation-delay: -2.0s; }
     .terrarium-shelf--inkind .sponsor-cloche-logo { animation-duration: 4s; animation-delay: -1s; }
-    .terrarium-shelf--inkind .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.2s; }
-    .terrarium-shelf--inkind .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -3s; }
-    .terrarium-shelf--inkind .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.8s; }
-    .terrarium-shelf--inkind .sponsor-cloche:nth-child(5) .sponsor-cloche-logo { animation-delay: -1.5s; }
-    .terrarium-shelf--inkind .sponsor-cloche:nth-child(6) .sponsor-cloche-logo { animation-delay: -2.8s; }
+    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.2s; }
+    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -3s; }
+    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.8s; }
+    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(1) .sponsor-cloche-logo { animation-delay: -1.5s; }
+    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.8s; }
+    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -0.6s; }
 
     .sponsor-cloche:hover .sponsor-cloche-logo,
     .sponsor-cloche:focus-within .sponsor-cloche-logo {
@@ -1627,12 +1663,30 @@
       }
 
       .terrarium-shelf--inkind .terrarium-shelf-items {
-        gap: 28px 48px;
-        padding-top: 14px;
+        gap: 20px;
+        padding: 14px 28px 14px;
+      }
+
+      .terrarium-shelf--inkind .inkind-row {
+        gap: 18px 24px;
+        max-width: 100%;
+      }
+
+      .terrarium-shelf--inkind .inkind-row--three {
+        max-width: 100%;
+      }
+
+      .terrarium-shelf--inkind .sponsor-cloche--deepspace .sponsor-cloche-logo {
+        margin-left: 10px;
+      }
+
+      .terrarium-shelf--inkind .sponsor-cloche--immi .sponsor-cloche-logo {
+        margin-left: 20px;
       }
 
       .terrarium-shelf--inkind .sponsor-cloche--photon .sponsor-cloche-logo,
-      .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
+      .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo,
+      .terrarium-shelf--inkind .sponsor-cloche--elevenlabs .sponsor-cloche-logo {
         width: 150px;
         height: 52px;
       }
@@ -2595,42 +2649,52 @@
           <div class="terrarium-shelf-label">
             <span class="terrarium-shelf-label-name">In Kind</span>
           </div>
-          <div class="terrarium-shelf-items">
-            <a class="sponsor-cloche sponsor-cloche--aws" href="https://aws.amazon.com/?nc2=h_home" target="_blank" rel="noopener noreferrer" aria-label="AWS, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/png-transparent-amazon-aws-logo.png" alt="AWS" />
-              </div>
-            </a>
+          <div class="terrarium-shelf-items terrarium-shelf-items--inkind">
+            <div class="inkind-row inkind-row--four">
+              <a class="sponsor-cloche sponsor-cloche--photon" href="https://photon.codes/" target="_blank" rel="noopener noreferrer" aria-label="Photon, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/Photon%20-%20Logotype%20-%20512w.png" alt="Photon" />
+                </div>
+              </a>
 
-            <a class="sponsor-cloche" href="https://deep.space/" target="_blank" rel="noopener noreferrer" aria-label="Deepspace, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/deepspace-mark.png" alt="Deepspace" />
-              </div>
-            </a>
+              <a class="sponsor-cloche sponsor-cloche--aws" href="https://aws.amazon.com/?nc2=h_home" target="_blank" rel="noopener noreferrer" aria-label="AWS, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/png-transparent-amazon-aws-logo.png" alt="AWS" />
+                </div>
+              </a>
 
-            <a class="sponsor-cloche" href="https://immieats.com/" target="_blank" rel="noopener noreferrer" aria-label="IMMI, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/IMMI_LOGO_YELLOW_RGB_1600px.png" alt="IMMI" />
-              </div>
-            </a>
+              <a class="sponsor-cloche sponsor-cloche--deepspace" href="https://deep.space/" target="_blank" rel="noopener noreferrer" aria-label="Deepspace, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/deepspace-mark.png" alt="Deepspace" />
+                </div>
+              </a>
 
-            <a class="sponsor-cloche" href="https://www.wegmans.com/" target="_blank" rel="noopener noreferrer" aria-label="Wegmans, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/wegmans_logo.webp" alt="Wegmans" />
-              </div>
-            </a>
+              <a class="sponsor-cloche sponsor-cloche--lovable" href="https://lovable.dev/" target="_blank" rel="noopener noreferrer" aria-label="Lovable, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/Lovable_Logo_%2B_Wordmark_Black.png" alt="Lovable" />
+                </div>
+              </a>
+            </div>
 
-            <a class="sponsor-cloche sponsor-cloche--photon" href="https://photon.codes/" target="_blank" rel="noopener noreferrer" aria-label="Photon, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/Photon%20-%20Logotype%20-%20512w.png" alt="Photon" />
-              </div>
-            </a>
+            <div class="inkind-row inkind-row--three">
+              <a class="sponsor-cloche sponsor-cloche--elevenlabs" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer" aria-label="ElevenLabs, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/elevenlabs-logo-white.png" alt="ElevenLabs" />
+                </div>
+              </a>
 
-            <a class="sponsor-cloche sponsor-cloche--lovable" href="https://lovable.dev/" target="_blank" rel="noopener noreferrer" aria-label="Lovable, In Kind sponsor">
-              <div class="sponsor-cloche-logo">
-                <img src="assets/Lovable_Logo_%2B_Wordmark_Black.png" alt="Lovable" />
-              </div>
-            </a>
+              <a class="sponsor-cloche sponsor-cloche--immi" href="https://immieats.com/" target="_blank" rel="noopener noreferrer" aria-label="IMMI, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/IMMI_LOGO_YELLOW_RGB_1600px.png" alt="IMMI" />
+                </div>
+              </a>
+
+              <a class="sponsor-cloche" href="https://www.wegmans.com/" target="_blank" rel="noopener noreferrer" aria-label="Wegmans, In Kind sponsor">
+                <div class="sponsor-cloche-logo">
+                  <img src="assets/wegmans_logo.webp" alt="Wegmans" />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
