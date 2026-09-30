@@ -52,14 +52,22 @@
       color: #f5f5f5;
       overflow-x: hidden;
       background-color: #000;
+      cursor: none;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-color: #000;
       background-image:
         linear-gradient(rgba(0, 0, 0, 0.406), rgba(0, 0, 0, 0.85)),
         url('assets/landingBackground.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
-      background-attachment: fixed;
-      cursor: none;
     }
 
 
@@ -249,13 +257,27 @@
     /* CURSOR GLOW */
     .cursor {
       position: fixed;
+      top: 0;
+      left: 0;
       width: 20px;
       height: 20px;
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle, #fae6ff, #ba79d6, transparent);
-      transform: translate(-50%, -50%);
+      transform: translate3d(-50%, -50%, 0);
+      will-change: transform;
       z-index: 4000;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    html.has-custom-cursor .cursor.is-visible {
+      opacity: 1;
+    }
+
+    html.has-custom-cursor,
+    html.has-custom-cursor * {
+      cursor: none !important;
     }
 
 
@@ -2087,10 +2109,6 @@
         overflow-x: hidden;
       }
 
-      body {
-        background-attachment: scroll;
-      }
-
       :root {
         --nav-height: 3.75rem;
       }
@@ -2908,7 +2926,7 @@
 
 
     if (enableParticles) {
-      setInterval(createParticle, 300);
+      setInterval(createParticle, 500);
     }
 
 
@@ -2917,10 +2935,29 @@
     const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
     if (!isTouchDevice && cursor) {
-      document.addEventListener("mousemove", (e) => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
+      document.documentElement.classList.add("has-custom-cursor");
 
+      let lastTrailAt = 0;
+      let cursorVisible = false;
+
+      function showCursor() {
+        if (cursorVisible) return;
+        cursorVisible = true;
+        cursor.classList.add("is-visible");
+      }
+
+      function hideCursor() {
+        cursorVisible = false;
+        cursor.classList.remove("is-visible");
+      }
+
+      document.addEventListener("mousemove", (e) => {
+        showCursor();
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+
+        const now = performance.now();
+        if (now - lastTrailAt < 32) return;
+        lastTrailAt = now;
 
         const trail = document.createElement("div");
         trail.className = "trail";
@@ -2928,8 +2965,14 @@
         trail.style.top = e.clientY + "px";
         document.body.appendChild(trail);
 
-
         setTimeout(() => trail.remove(), 800);
+      }, { passive: true });
+
+      document.addEventListener("mouseenter", showCursor);
+      document.addEventListener("mouseleave", hideCursor);
+      window.addEventListener("blur", hideCursor);
+      window.addEventListener("focus", () => {
+        // Wait for the next mousemove so we don't flash at 0,0
       });
     }
 
@@ -3060,14 +3103,12 @@
   <script>
     const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
     const lenis = window.lenis = new Lenis({
-      lerp: 0.06,
-      wheelMultiplier: 1.25,
-      touchMultiplier: isCoarsePointer ? 1 : 1.45,
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      touchMultiplier: isCoarsePointer ? 1 : 1.2,
       smoothWheel: true,
-      smoothTouch: !isCoarsePointer,
-      syncTouch: !isCoarsePointer,
-      syncTouchLerp: 0.075,
-      touchInertiaMultiplier: 42,
+      smoothTouch: false,
+      syncTouch: false,
     });
 
 
@@ -3075,20 +3116,17 @@
     let placeButterflyFn = null;
 
 
-    function raf(time) {
-      lenis.raf(time);
-      if (placeButterflyFn) placeButterflyFn();
-      requestAnimationFrame(raf);
-    }
-
-
-    requestAnimationFrame(raf);
-
-
     gsap.registerPlugin(ScrollTrigger);
 
 
     lenis.on('scroll', ScrollTrigger.update);
+
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+      if (placeButterflyFn) placeButterflyFn();
+    });
+    gsap.ticker.lagSmoothing(0);
 
 
     ScrollTrigger.scrollerProxy(document.documentElement, {
@@ -3107,6 +3145,7 @@
         };
       },
     });
+    ScrollTrigger.defaults({ scroller: document.documentElement });
 
 
     function initMlhBadge() {
@@ -3191,7 +3230,11 @@
         { selector: '#faqs .section-title', side: 'right' },
         { selector: '#team .section-title', side: 'left' },
         { type: 'flower', side: 'right' },
-      ];
+      ].map((stop) => (
+        stop.type === 'flower'
+          ? stop
+          : { ...stop, el: document.querySelector(stop.selector) }
+      ));
 
 
       const GAP = 12;
@@ -3199,19 +3242,11 @@
       const PETAL_X = 0.55;
       const PETAL_Y = 0.38;
       let stopsData = [];
-
-
-      function getTitleTextRect(el) {
-        const range = document.createRange();
-        range.selectNodeContents(el);
-        const textRect = range.getBoundingClientRect();
-        if (textRect.width > 0 && textRect.height > 0) return textRect;
-        return el.getBoundingClientRect();
-      }
+      const flowerEl = document.getElementById('page-flower');
 
 
       function perchAt(el, side) {
-        const rect = getTitleTextRect(el);
+        const rect = el.getBoundingClientRect();
         const halfW = butterfly.offsetWidth / 2;
 
 
@@ -3226,11 +3261,8 @@
 
 
       function flowerPerch() {
-        const flower = document.getElementById('page-flower');
-        if (!flower) return null;
-
-
-        const rect = flower.getBoundingClientRect();
+        if (!flowerEl) return null;
+        const rect = flowerEl.getBoundingClientRect();
 
 
         return {
@@ -3243,9 +3275,8 @@
 
       function getStopPos(stop) {
         if (stop.type === 'flower') return flowerPerch();
-        const el = document.querySelector(stop.selector);
-        if (!el) return null;
-        return perchAt(el, stop.side);
+        if (!stop.el) return null;
+        return perchAt(stop.el, stop.side);
       }
 
 
@@ -3259,13 +3290,10 @@
           if (stop.type === 'flower') {
             return { ...stop, anchor: maxScroll };
           }
+          if (!stop.el) return null;
 
 
-          const el = document.querySelector(stop.selector);
-          if (!el) return null;
-
-
-          const rect = getTitleTextRect(el);
+          const rect = stop.el.getBoundingClientRect();
           const docCenter = scrollY + rect.top + rect.height / 2;
 
 
@@ -3274,9 +3302,17 @@
       }
 
 
+      let lastFlightT = -1;
+      let lastScrollY = -1;
+
       function placeButterfly() {
         if (!stopsData.length) measureStops();
         if (!stopsData.length) return;
+
+        const scrollY = lenis.scroll;
+        if (butterflyFlight.t === lastFlightT && scrollY === lastScrollY) return;
+        lastFlightT = butterflyFlight.t;
+        lastScrollY = scrollY;
 
 
         const maxIndex = stops.length - 1;
@@ -3309,6 +3345,7 @@
           y,
           scaleX,
           rotation: scaleX === 1 ? -4 : 4,
+          force3D: true,
         });
       }
 
@@ -3318,6 +3355,8 @@
         gsap.killTweensOf(butterflyFlight);
         measureStops();
         butterflyFlight.t = 0;
+        lastFlightT = -1;
+        lastScrollY = -1;
         placeButterfly();
 
 
@@ -3331,10 +3370,12 @@
             scroller: document.documentElement,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 6,
+            scrub: 1.2,
             invalidateOnRefresh: true,
             onRefresh: () => {
               measureStops();
+              lastFlightT = -1;
+              lastScrollY = -1;
               placeButterfly();
             },
           },
