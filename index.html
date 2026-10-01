@@ -264,40 +264,68 @@
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle, #fae6ff, #ba79d6, transparent);
-      transform: translate3d(-50%, -50%, 0);
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
       will-change: transform;
       z-index: 4000;
       opacity: 0;
-      transition: opacity 0.15s ease;
+      transition: opacity 0.12s ease;
     }
 
     html.has-custom-cursor .cursor.is-visible {
       opacity: 1;
     }
 
-    html.has-custom-cursor,
-    html.has-custom-cursor * {
-      cursor: none !important;
+    /* Zoom multiplies paint cost — strip heavy sponsor effects */
+    html.is-zoomed .sponsors-container {
+      box-shadow: 0 0 0 1px rgba(61, 20, 61, 0.6);
     }
 
+    html.is-zoomed .sponsor-cloche:hover .sponsor-cloche-logo,
+    html.is-zoomed .sponsor-cloche:focus-within .sponsor-cloche-logo {
+      transform: none;
+    }
 
-    .trail {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
+    html.is-zoomed .terrarium-shelf {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 220px;
+    }
+
+    html.is-zoomed .butterfly-container,
+    html.is-zoomed #particles {
+      display: none !important;
+    }
+
+    html.is-zoomed .cursor {
       background: #ba79d6;
-      pointer-events: none;
-      z-index: 3999;
-      animation: fadeTrail 1s linear forwards;
+      width: 14px;
+      height: 14px;
+      transition: none;
     }
 
+    html.is-zoomed .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo img,
+    html.is-zoomed .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo img {
+      filter: brightness(1.4);
+    }
 
-    @keyframes fadeTrail {
-      to {
-        opacity: 0;
-        transform: scale(0.3);
-      }
+    html.is-zoomed .sponsors-container::before,
+    html.is-zoomed .sponsors-container::after {
+      display: none;
+    }
+
+    html.has-custom-cursor,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button,
+    html.has-custom-cursor [role="button"],
+    html.has-custom-cursor input,
+    html.has-custom-cursor textarea,
+    html.has-custom-cursor select,
+    html.has-custom-cursor label,
+    html.has-custom-cursor .sponsor-cloche,
+    html.has-custom-cursor .faq-question,
+    html.has-custom-cursor .tracks-nav,
+    html.has-custom-cursor .nav-toggle,
+    html.has-custom-cursor .team-orb {
+      cursor: none !important;
     }
 
 
@@ -1158,13 +1186,9 @@
       outline-offset: 4px;
       box-shadow:
         0 0 0 1px rgba(61, 20, 61, 0.6),
-        0 0 28px rgba(186, 121, 214, 0.5),
-        0 0 56px rgba(186, 121, 214, 0.22),
+        0 0 18px rgba(186, 121, 214, 0.28),
         inset 0 0 0 1px rgba(250, 230, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        inset 0 -1px 0 rgba(157, 220, 255, 0.06);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .sponsors-container::before,
@@ -1523,31 +1547,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: cloche-pulse 3.6s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px var(--shelf-pulse-soft));
-      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.25s ease;
     }
-
-    .terrarium-shelf--redwood .sponsor-cloche-logo { animation-duration: 4s; animation-delay: -0.8s; }
-    .terrarium-shelf--ironwood .sponsor-cloche-logo { animation-duration: 4.2s; animation-delay: -1.4s; }
-    .terrarium-shelf--ironwood .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2s; }
-    .terrarium-shelf--birch .sponsor-cloche-logo { animation-duration: 3.8s; animation-delay: -0.4s; }
-    .terrarium-shelf--birch .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -1.8s; }
-    .terrarium-shelf--birch .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -2.6s; }
-    .terrarium-shelf--birch .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.2s; }
-    .terrarium-shelf--birch .sponsor-cloche:nth-child(5) .sponsor-cloche-logo { animation-delay: -1.2s; }
-    .terrarium-shelf--birch .sponsor-cloche:nth-child(6) .sponsor-cloche-logo { animation-delay: -2.0s; }
-    .terrarium-shelf--inkind .sponsor-cloche-logo { animation-duration: 4s; animation-delay: -1s; }
-    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.2s; }
-    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -3s; }
-    .terrarium-shelf--inkind .inkind-row--four .sponsor-cloche:nth-child(4) .sponsor-cloche-logo { animation-delay: -3.8s; }
-    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(1) .sponsor-cloche-logo { animation-delay: -1.5s; }
-    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(2) .sponsor-cloche-logo { animation-delay: -2.8s; }
-    .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:nth-child(3) .sponsor-cloche-logo { animation-delay: -0.6s; }
 
     .sponsor-cloche:hover .sponsor-cloche-logo,
     .sponsor-cloche:focus-within .sponsor-cloche-logo {
-      transform: scale(1.06);
+      transform: scale(1.04);
     }
 
     .sponsor-cloche-logo img {
@@ -1558,11 +1563,10 @@
       object-fit: contain;
       object-position: center;
       display: block;
-      filter: brightness(1.1) contrast(1.04);
     }
 
     .sponsor-cloche.is-dark-logo .sponsor-cloche-logo img {
-      filter: brightness(1.3) contrast(1.05);
+      filter: brightness(1.25);
     }
 
     .sponsor-cloche-fallback {
@@ -1572,18 +1576,13 @@
       line-height: 1.25;
       text-align: center;
       color: rgba(255, 255, 255, 0.92);
-      text-shadow: 0 0 10px var(--shelf-pulse-strong);
     }
 
-    @keyframes cloche-pulse {
-      0%, 100% {
-        filter: drop-shadow(0 0 3px var(--shelf-pulse-soft));
-        opacity: 0.99;
-      }
-      50% {
-        filter: drop-shadow(0 0 6px var(--shelf-pulse-strong));
-        opacity: 1;
-      }
+    html.is-scrolling .sponsors-container {
+      /* keep paints light while scrolling through many logos */
+      box-shadow:
+        0 0 0 1px rgba(61, 20, 61, 0.6),
+        inset 0 0 0 1px rgba(250, 230, 255, 0.2);
     }
 
     @media (max-width: 900px) {
@@ -3029,8 +3028,10 @@
     if (!isTouchDevice && cursor) {
       document.documentElement.classList.add("has-custom-cursor");
 
-      let lastTrailAt = 0;
       let cursorVisible = false;
+      let mouseX = -100;
+      let mouseY = -100;
+      let needsRender = false;
 
       function showCursor() {
         if (cursorVisible) return;
@@ -3043,29 +3044,25 @@
         cursor.classList.remove("is-visible");
       }
 
-      document.addEventListener("mousemove", (e) => {
+      // Drive cursor on its own rAF loop so Lenis/GSAP work can't starve it
+      function cursorLoop() {
+        if (needsRender) {
+          needsRender = false;
+          cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }
+        requestAnimationFrame(cursorLoop);
+      }
+      requestAnimationFrame(cursorLoop);
+
+      document.addEventListener("pointermove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        needsRender = true;
         showCursor();
-        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-
-        const now = performance.now();
-        if (now - lastTrailAt < 32) return;
-        lastTrailAt = now;
-
-        const trail = document.createElement("div");
-        trail.className = "trail";
-        trail.style.left = e.clientX + "px";
-        trail.style.top = e.clientY + "px";
-        document.body.appendChild(trail);
-
-        setTimeout(() => trail.remove(), 800);
       }, { passive: true });
 
-      document.addEventListener("mouseenter", showCursor);
-      document.addEventListener("mouseleave", hideCursor);
+      document.addEventListener("pointerleave", hideCursor);
       window.addEventListener("blur", hideCursor);
-      window.addEventListener("focus", () => {
-        // Wait for the next mousemove so we don't flash at 0,0
-      });
     }
 
 
@@ -3194,6 +3191,7 @@
 
   <script>
     const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const baselineDpr = window.devicePixelRatio || 1;
     const lenis = window.lenis = new Lenis({
       lerp: 0.1,
       wheelMultiplier: 1,
@@ -3206,6 +3204,39 @@
 
     let butterflyFlight = { t: 0 };
     let placeButterflyFn = null;
+    let zoomPerfActive = false;
+
+
+    function isBrowserZoomed() {
+      const vvScale = window.visualViewport?.scale ?? 1;
+      if (vvScale > 1.05) return true;
+      // Chrome/Edge Ctrl+/- zoom increases devicePixelRatio vs page-load baseline
+      if ((window.devicePixelRatio || 1) / baselineDpr > 1.12) return true;
+      return false;
+    }
+
+
+    function applyZoomPerfMode() {
+      const zoomed = isBrowserZoomed();
+      if (zoomed === zoomPerfActive) return;
+      zoomPerfActive = zoomed;
+      document.documentElement.classList.toggle('is-zoomed', zoomed);
+
+      // Native scroll is much lighter under zoom; Lenis + many logos fights the cursor
+      if (zoomed) {
+        lenis.options.smoothWheel = false;
+        lenis.options.lerp = 1;
+      } else {
+        lenis.options.smoothWheel = true;
+        lenis.options.lerp = 0.1;
+      }
+    }
+
+
+    applyZoomPerfMode();
+    window.addEventListener('resize', applyZoomPerfMode);
+    window.visualViewport?.addEventListener('resize', applyZoomPerfMode);
+    window.visualViewport?.addEventListener('scroll', applyZoomPerfMode);
 
 
     gsap.registerPlugin(ScrollTrigger);
@@ -3213,10 +3244,26 @@
 
     lenis.on('scroll', ScrollTrigger.update);
 
+    let scrollIdleTimer = 0;
+    lenis.on('scroll', () => {
+      document.documentElement.classList.add('is-scrolling');
+      window.clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = window.setTimeout(() => {
+        document.documentElement.classList.remove('is-scrolling');
+      }, 140);
+    });
+
 
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
-      if (placeButterflyFn) placeButterflyFn();
+      // Skip butterfly while scrolling or zoomed — both starve the cursor in sponsors
+      if (
+        placeButterflyFn &&
+        !zoomPerfActive &&
+        !document.documentElement.classList.contains('is-scrolling')
+      ) {
+        placeButterflyFn();
+      }
     });
     gsap.ticker.lagSmoothing(0);
 
@@ -3396,6 +3443,7 @@
 
       let lastFlightT = -1;
       let lastScrollY = -1;
+      let butterflyFrame = 0;
 
       function placeButterfly() {
         if (!stopsData.length) measureStops();
@@ -3403,6 +3451,13 @@
 
         const scrollY = lenis.scroll;
         if (butterflyFlight.t === lastFlightT && scrollY === lastScrollY) return;
+
+        // Skip every other frame while scrolling to cut layout thrash
+        if (document.documentElement.classList.contains('is-scrolling')) {
+          butterflyFrame += 1;
+          if (butterflyFrame % 2 === 0) return;
+        }
+
         lastFlightT = butterflyFlight.t;
         lastScrollY = scrollY;
 
