@@ -1586,6 +1586,71 @@
       }
     }
 
+    @media (max-width: 900px) {
+      .terrarium-shelf--birch {
+        --logo-size: 180px;
+        --logo-height: 72px;
+        padding: 20px 20px 0;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .terrarium-shelf--birch .terrarium-shelf-items {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+        align-items: center;
+        gap: 16px 20px;
+        width: 100%;
+        max-width: 520px;
+        padding-bottom: 22px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche-logo {
+        max-width: 180px;
+        height: 70px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--isc2 {
+        flex: none;
+        max-width: 100%;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
+        width: 90px;
+        max-width: 90px;
+        height: 90px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche--wipro .sponsor-cloche-logo {
+        max-width: 100px;
+        height: 90px;
+      }
+
+      .terrarium-shelf--inkind .inkind-row--four,
+      .terrarium-shelf--inkind .inkind-row--three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 520px;
+      }
+
+      .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 46%;
+      }
+
+      .terrarium-shelf--inkind .sponsor-cloche--deepspace .sponsor-cloche-logo,
+      .terrarium-shelf--inkind .sponsor-cloche--immi .sponsor-cloche-logo {
+        margin-left: 0;
+      }
+    }
+
     @media (max-width: 700px) {
       #sponsors .section-container {
         padding-left: 20px;
@@ -1637,85 +1702,112 @@
       }
 
       .terrarium-shelf--birch {
-        --logo-size: 235px;
-        --logo-height: 94px;
-        padding: 20px 24px 0;
-        min-height: 190px;
+        --logo-size: 140px;
+        --logo-height: 56px;
+        padding: 16px 12px 0;
+        min-height: 0;
+        overflow: visible;
       }
 
       .terrarium-shelf--birch .terrarium-shelf-items {
-        width: min(760px, 100%);
-        gap: 8px 10px;
-        padding: 0 0 22px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+        align-items: center;
+        gap: 18px 16px;
+        width: 100%;
+        max-width: 100%;
+        padding: 4px 4px 20px;
+      }
+
+      .terrarium-shelf--birch .sponsor-cloche {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .terrarium-shelf--birch .sponsor-cloche-logo {
-        max-width: 215px;
-        height: 86px;
+        width: 100%;
+        max-width: 150px;
+        height: 58px;
       }
 
       .terrarium-shelf--birch .sponsor-cloche--digitalverity .sponsor-cloche-logo {
-        max-width: 205px;
-        height: 84px;
+        max-width: 150px;
+        height: 58px;
       }
 
       .terrarium-shelf--birch .sponsor-cloche--isc2 {
-        flex: 0 1 118px;
-        max-width: 118px;
+        flex: none;
+        max-width: 100%;
       }
 
       .terrarium-shelf--birch .sponsor-cloche--isc2 .sponsor-cloche-logo {
-        width: 115px;
-        max-width: 115px;
-        height: 115px;
+        width: 72px;
+        max-width: 72px;
+        height: 72px;
       }
 
       .terrarium-shelf--birch .sponsor-cloche--wipro .sponsor-cloche-logo {
-        max-width: 120px;
-        height: 110px;
-      }
-
-      .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo {
-        max-width: 200px;
+        max-width: 90px;
         height: 80px;
       }
 
+      .terrarium-shelf--birch .sponsor-cloche--isaca .sponsor-cloche-logo {
+        max-width: 150px;
+        height: 56px;
+      }
+
       .terrarium-shelf--inkind {
-        --logo-size: 68px;
+        --logo-size: 72px;
+        padding: 16px 12px 0;
       }
 
       .terrarium-shelf--inkind .terrarium-shelf-items {
         gap: 20px;
-        padding: 14px 28px 14px;
+        padding: 12px 8px 16px;
+        width: 100%;
       }
 
       .terrarium-shelf--inkind .inkind-row {
-        gap: 18px 24px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 12px;
         max-width: 100%;
+        width: 100%;
       }
 
+      .terrarium-shelf--inkind .inkind-row--four,
       .terrarium-shelf--inkind .inkind-row--three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         max-width: 100%;
       }
 
-      .terrarium-shelf--inkind .sponsor-cloche--deepspace .sponsor-cloche-logo {
-        margin-left: 10px;
+      .terrarium-shelf--inkind .inkind-row--three .sponsor-cloche:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 50%;
       }
 
+      .terrarium-shelf--inkind .sponsor-cloche--deepspace .sponsor-cloche-logo,
       .terrarium-shelf--inkind .sponsor-cloche--immi .sponsor-cloche-logo {
-        margin-left: 20px;
+        margin-left: 0;
       }
 
       .terrarium-shelf--inkind .sponsor-cloche--photon .sponsor-cloche-logo,
       .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo,
       .terrarium-shelf--inkind .sponsor-cloche--elevenlabs .sponsor-cloche-logo {
-        width: 150px;
-        height: 52px;
+        width: 100%;
+        max-width: 140px;
+        height: 48px;
       }
 
       .terrarium-shelf--inkind .sponsor-cloche--lovable .sponsor-cloche-logo {
-        width: 175px;
-        height: 60px;
+        max-width: 150px;
+        height: 52px;
       }
 
       .terrarium-shelf-items {
